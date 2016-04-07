@@ -11,7 +11,7 @@
 BUILD_DIR=$1
 
 # Return COGEQ iff there's COGEQ in README
-if grep -i "COGEQ" $1/README.md; then
+if grep -iq "COGEQ" $1/README.md; then
   echo COGEQ
   exit 0
 fi
