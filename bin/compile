@@ -22,7 +22,7 @@ export PATH=:/usr/local/bin:$PATH
 
 # Paths.
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
-ROOT_DIR=$(dirname $BIN_DIR)
+ROOT_DIR=$(dirname $BIN_DIR)/server
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
@@ -31,7 +31,7 @@ ENV_DIR=$3
 VIRTUALENV_LOC=".heroku/venv"
 LEGACY_TRIGGER="lib/python2.7"
 
-DEFAULT_PYTHON_VERSION="python-2.7.11"
+DEFAULT_PYTHON_VERSION="python-3.5.1"
 DEFAULT_PYTHON_STACK="cedar-14"
 PYTHON_EXE="/app/.heroku/python/bin/python"
 PIP_VERSION="8.1.1"
@@ -133,8 +133,8 @@ bpwatch start pre_compile
 bpwatch stop pre_compile
 
 # If no requirements.txt file given, assume `setup.py develop` is intended.
-if [ ! -f requirements.txt ]; then
-  echo "-e ." > requirements.txt
+if [ ! -f server/requirements.txt ]; then
+  echo "-e ." > server/requirements.txt
 fi
 
 
@@ -267,4 +267,3 @@ if [[ ! "$DOCKER_BUILD" ]]; then
   bpwatch stop anvil_appdir_commit
   bpwatch stop compile
 fi
-

@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-# This script serves as the
-# [**Python Buildpack**](https://github.com/heroku/heroku-buildpack-python)
-# detector.
-#
 # A [buildpack](https://devcenter.heroku.com/articles/buildpacks) is an
-# adapter between a Python application and Heroku's runtime.
+# adapter between the COGEQ application and Heroku's runtime.
 
 # ## Usage
 # Compiling an app into a slug is simple:
@@ -14,9 +10,10 @@
 
 BUILD_DIR=$1
 
-# Exit early if app is clearly not Python.
-if [ ! -f $BUILD_DIR/requirements.txt ] && [ ! -f $BUILD_DIR/setup.py ]; then
-  exit 1
+# Return COGEQ iff there's COGEQ in README
+if grep -i "COGEQ" $1/README.md; then
+  echo COGEQ
+  exit 0
 fi
 
-echo Python
+exit 1

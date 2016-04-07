@@ -10,14 +10,11 @@ MANAGE_FILE=${MANAGE_FILE:2}
 cat <<EOF
 ---
 config_vars:
-
 EOF
-
 
 if [[ $MANAGE_FILE ]]; then
 cat <<EOF
-
 addons:
-  - heroku-postgresql
+  - mongolab
 EOF
 fi
