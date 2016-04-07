@@ -136,6 +136,7 @@ bpwatch stop pre_compile
 
 # If no requirements.txt file given, assume `setup.py develop` is intended.
 if [ ! -f requirements.txt ]; then
+  puts-warn 'No requirements.txt file is found'
   echo "-e ." > requirements.txt
 fi
 
